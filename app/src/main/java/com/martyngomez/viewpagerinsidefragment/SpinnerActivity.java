@@ -1,12 +1,15 @@
 package com.martyngomez.viewpagerinsidefragment;
 
+import android.content.Context;
+import android.content.res.Resources.Theme;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ThemedSpinnerAdapter;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,13 +19,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.content.Context;
-import android.support.v7.widget.ThemedSpinnerAdapter;
-import android.content.res.Resources.Theme;
-
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class SpinnerActivity extends AppCompatActivity {
+public class SpinnerActivity extends AppCompatActivity implements ContainerFragment.OnFragmentInteractionListener,SegundoFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +33,15 @@ public class SpinnerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
+
         // Setup spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(new MyAdapter(
                 toolbar.getContext(),
                 new String[]{
-                        "Section 1",
-                        "Section 2",
-                        "Section 3",
+                        "Container",
+                        "Otro Fragment",
                 }));
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -48,9 +49,32 @@ public class SpinnerActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // When the given dropdown item is selected, show its contents in the
                 // container view.
-                getSupportFragmentManager().beginTransaction()
+               /* getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                        .commit();
+                        .commit();*/
+               // Toast.makeText(SpinnerActivity.this, parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SpinnerActivity.this, "Posicion " + position, Toast.LENGTH_SHORT).show();
+                Fragment fragmento = new Fragment();
+                switch(position){
+                    case 0:
+                        //ContainerFragment containerFragment = new ContainerFragment();
+                        fragmento = new ContainerFragment();
+
+                        break;
+                    case 1:
+                        fragmento = new SegundoFragment();
+
+                        break;
+                }
+
+                if( fragmento != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, fragmento)
+                            .commit();
+
+                }
+
+
             }
 
             @Override
@@ -90,6 +114,11 @@ public class SpinnerActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
 
