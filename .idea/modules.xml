@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ViewPagerInsideFragment.iml" filepath="$PROJECT_DIR$/ViewPagerInsideFragment.iml" />
-      <module fileurl="file://D:\MTN\codigo fuente\Android\ViewPagerInsideFragment\ViewPagerInsideFragment.iml" filepath="D:\MTN\codigo fuente\Android\ViewPagerInsideFragment\ViewPagerInsideFragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\MTN\codigo fuente\Android\ViewPagerInsideFragment\app\app.iml" filepath="D:\MTN\codigo fuente\Android\ViewPagerInsideFragment\app\app.iml" />
     </modules>
   </component>
 </project>
