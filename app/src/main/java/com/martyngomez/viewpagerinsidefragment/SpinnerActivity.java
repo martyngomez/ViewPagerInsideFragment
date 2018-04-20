@@ -18,7 +18,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SpinnerActivity extends AppCompatActivity implements ContainerFragment.OnFragmentInteractionListener,
         SegundoFragment.OnFragmentInteractionListener, AzulFragment.OnFragmentInteractionListener, VerdeFragment.OnFragmentInteractionListener,
@@ -70,6 +69,7 @@ public class SpinnerActivity extends AppCompatActivity implements ContainerFragm
                 if( fragmento != null) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.container, fragmento)
+                            .addToBackStack(null) //Evita errores de cargas multiples
                             .commit();
 
                 }
